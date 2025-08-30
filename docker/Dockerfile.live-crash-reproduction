@@ -1,0 +1,40 @@
+FROM ruby:3.4.4-alpine
+
+# Install system dependencies
+RUN apk add --no-cache \
+    build-base \
+    postgresql-dev \
+    postgresql-client \
+    git \
+    curl \
+    yaml-dev \
+    libxml2-dev \
+    libxslt-dev \
+    mariadb-dev \
+    sqlite-dev \
+    tzdata \
+    bash \
+    linux-headers \
+    && rm -rf /var/cache/apk/*
+
+# Set up core dumps for Alpine Linux
+ENV COREDUMP_USE_UID=1
+ENV COREDUMP_PATTERN="/tmp/core_dumps/core.ruby.%e.%p.%t"
+
+# Create core dump directory
+RUN mkdir -p /tmp/core_dumps && chmod 777 /tmp/core_dumps
+
+# Set working directory
+WORKDIR /app
+
+# Copy the clean Rails test app
+COPY rails-test-app/ .
+
+# Install gems
+RUN bundle install
+
+# Expose port
+EXPOSE 3000
+
+# Default command
+CMD ["sh"]

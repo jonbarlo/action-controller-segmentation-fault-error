@@ -1,0 +1,26 @@
+source "https://rubygems.org"
+
+# Rails core
+gem "rails", "~> 8.0.2"
+
+# Database
+gem "pg", "~> 1.5"
+
+# Web server
+gem "puma", "~> 6.0"
+
+# For crash reproduction testing
+gem "rack", "~> 3.0"
+gem "openssl", "~> 3.0"
+
+# Development
+gem "rake", "~> 13.0"
+gem "bundler", "~> 2.4"
+
+# Rails 8 dependencies
+gem "bootsnap", "~> 1.18"
+gem "zeitwerk", "~> 2.6"
+gem "concurrent-ruby", "~> 1.2"
+gem "i18n", "~> 1.13"
+gem "minitest", "~> 5.18"
+gem "tzinfo", "~> 2.0"
